@@ -31,3 +31,6 @@ scratch/
 
 # regeneratable synthetic fixtures
 examples/out/
+
+# authoring-time only: regenerates docs/demo.gif (the rendered gif IS tracked)
+scripts/make_demo_gif.py
