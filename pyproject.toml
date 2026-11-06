@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "beyond-pslist"
+version = "0.1.0"
+description = "Tell antivirus-signature residue from a real payload in a Windows memory dump."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Atanas Burmov" }]
+keywords = [
+    "memory-forensics", "dfir", "volatility", "windows", "incident-response",
+    "defender", "amsi", "yara", "malware-analysis", "ioc",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+    "Topic :: System :: Monitoring",
+]
+# Zero runtime dependencies on purpose: this must run on a locked-down analysis box.
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[project.urls]
+Homepage = "https://github.com/AABurmov18/beyond-pslist"
+Repository = "https://github.com/AABurmov18/beyond-pslist"
+Issues = "https://github.com/AABurmov18/beyond-pslist/issues"
+
+[project.scripts]
+bps = "beyondpslist.cli:main"
+
+[tool.setuptools]
+packages = ["beyondpslist"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
