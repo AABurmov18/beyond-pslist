@@ -1,6 +1,6 @@
-# Volatility 3 runbook — which plugin surfaces what
+# Volatility 3 runbook - which plugin surfaces what
 
-A fast reference for the climb in `METHODOLOGY.md`. Invocation pattern (set UTF-8 first — a stray
+A fast reference for the climb in `METHODOLOGY.md`. Invocation pattern (set UTF-8 first - a stray
 CJK byte in a process field will otherwise crash a cp1252 console):
 
 ```bash
@@ -25,7 +25,7 @@ VOL="python vol.py -q -f image.mem"
 | RWX private memory | `$VOL windows.malfind --pid <PID>` | RWX in MsMpEng/AV is its own engine |
 | VAD map + protections | `$VOL windows.vadinfo --pid <PID>` | `PrivateMemory`, `PAGE_EXECUTE_READWRITE`, mapped file names |
 | Carve a region | `$VOL windows.vadinfo --pid <PID> --address <VA> --dump` | then `bps zcheck` the output |
-| Process hollowing | `$VOL windows.malware.hollowprocesses` | empty ⇒ nothing hollowed |
+| Process hollowing | `$VOL windows.malware.hollowprocesses` | empty => nothing hollowed |
 | Unlinked modules | `$VOL windows.malware.ldrmodules --pid <PID>` | a paged PEB makes everything look unlinked |
 
 ## Drivers / services / persistence

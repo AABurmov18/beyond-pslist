@@ -1,8 +1,8 @@
-# Antivirus-signature markers — how to recognise residue
+# Antivirus-signature markers - how to recognise residue
 
 These are the patterns that tell you an indicator is **antivirus signature content**, not a resident
 payload. They mirror `beyondpslist/markers.py` (`AV_MARKERS`). They describe Microsoft Defender's
-public threat-naming grammar and its `.vdm` definition records — generic conventions, not data from
+public threat-naming grammar and its `.vdm` definition records - generic conventions, not data from
 any case.
 
 If an IOC sits within a few hundred bytes of any of these, treat it as residue.
@@ -32,7 +32,7 @@ A payload rarely carries both encodings back-to-back; a signature database does 
 - The **same bytes repeated at several virtual addresses** (the VDM mapped more than once).
 - IOC lists mixed with **unrelated** IOCs and family labels (a signature bundling many samples).
 - **Cross-platform** content in one block (macOS `system_profiler`, Android `Trojan:AndroidOS/...`)
-  next to your "Windows payload" — a database, not a process.
+  next to your "Windows payload" - a database, not a process.
 
 ## Grep hints
 
