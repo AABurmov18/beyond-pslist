@@ -61,3 +61,25 @@ VOL="python vol.py -q -f image.mem"
 
 > `vadyarascan` under-reports in the negative direction (it can miss hits a targeted `--pid` run
 > finds). Treat a hit as meaningful; treat a miss as inconclusive.
+
+## Timeline (pair with this repo)
+
+Memory carries time in several plugins; merge them into one ordered view with `bps timeline`.
+
+| Time source | Command |
+|---|---|
+| Process create times | `$VOL windows.pslist` / `$VOL windows.psscan` |
+| Supertimeline (+ USB mount symlinks) | `$VOL timeliner` |
+| File MACB timestamps | `$VOL windows.mftscan.MFTScan` |
+| Live connection owners | `$VOL windows.netscan` |
+| Registry key LastWrite | `$VOL windows.registry.printkey --key ...` |
+
+Normalise any of these into a `timestamp,source,detail` CSV/TSV, then:
+
+```bash
+bps timeline events.csv --gap-minutes 5
+```
+
+A child process created minutes after its parent (a quiet gap then a burst of activity) is a classic
+hands-on-keyboard signal; `bps timeline` tags it inline (`[+7m16s]`). Watch for timestomped dates
+(year 1601, far-future), and always work in UTC. See `docs/TIMELINE.md`.

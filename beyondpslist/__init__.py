@@ -11,6 +11,7 @@ Modules:
     context  -- print the bytes around a hit so you can read what it sits next to
     zcheck   -- is a carved region a real payload? (non-zero ratio + PE/script markers)
     sift     -- baseline-subtract two dumps, then score survivors residue vs candidate
+    timeline -- merge event rows into one chronological timeline, flag interactive gaps
     markers  -- shared IOC regexes and antivirus-signature marker patterns
 """
 

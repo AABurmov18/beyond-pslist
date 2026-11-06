@@ -1,0 +1,10 @@
+timestamp,source,detail
+2025-01-01 09:12:03 UTC,SymlinkScan,USB mass storage USB-SN-0000SYNTH1234 mounted as HarddiskVolume7 (D:)
+2025-01-01 09:12:31 UTC,PsList,freebonus.exe (pid 4821) started by explorer.exe (pid 1320)
+2025-01-01 09:12:31 UTC,NetScan,TCP 10.20.30.40:50122 -> 10.20.30.9:9001 ESTABLISHED (pid 4821)
+2025-01-01 09:13:04 UTC,PsList,conhost.exe (pid 4990) started
+2025-01-01 09:19:47 UTC,PsList,cmd.exe (pid 5133) started by freebonus.exe (pid 4821)
+2025-01-01 09:19:52 UTC,PsList,notepad.exe (pid 5160) started by freebonus.exe (pid 4821)
+2025-01-01 09:22:10 UTC,Acquisition,memory capture started
+1601-01-01 00:00:00 UTC,PeHeader,synthdrv.sys PE compile time (timestomped - ignore)
+N/A,MftScan,README_RECOVER.txt present (no MACB timestamp resident)

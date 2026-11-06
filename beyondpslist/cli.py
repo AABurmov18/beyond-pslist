@@ -5,6 +5,7 @@ Subcommands:
     context   print the bytes around a hit (surfaces AV signature labels)
     zcheck    is a carved region a real payload?
     sift      baseline-subtract two dumps and score survivors residue vs candidate
+    timeline  merge event rows into one chronological timeline, flag interactive gaps
 """
 
 from __future__ import annotations
@@ -17,6 +18,7 @@ from . import context as _context
 from . import zcheck as _zcheck
 from .sift import sift
 from .strings import iter_strings
+from .timeline import from_lines, interactive_gaps, render_table
 
 
 def _cmd_strings(a: argparse.Namespace) -> int:
@@ -60,6 +62,16 @@ def _cmd_sift(a: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_timeline(a: argparse.Namespace) -> int:
+    if a.file == "-":
+        events = from_lines(sys.stdin)
+    else:
+        with open(a.file, encoding="utf-8", errors="replace") as fh:
+            events = from_lines(fh)
+    print(render_table(events, gap_minutes=a.gap_minutes))
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="bps",
@@ -93,6 +105,12 @@ def build_parser() -> argparse.ArgumentParser:
     v.add_argument("--window", type=int, default=400, help="bytes of context to scan for markers")
     v.add_argument("--keywords", default="", help="extra comma-separated strings to test")
     v.set_defaults(func=_cmd_sift)
+
+    t = sub.add_parser("timeline", help="merge event rows into one chronological timeline")
+    t.add_argument("file", help="CSV/TSV with timestamp,source,detail columns (use - for stdin)")
+    t.add_argument("--gap-minutes", type=float, default=5.0,
+                   help="annotate quiet gaps of >= N minutes between events (0 disables)")
+    t.set_defaults(func=_cmd_timeline)
     return p
 
 
